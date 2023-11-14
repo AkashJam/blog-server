@@ -13,6 +13,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// gin.Accounts is a shortcut for map[string]string
 var secrets = gin.H{
 	"foo":    gin.H{"email": "foo@bar.com", "phone": "123433"},
 	"austin": gin.H{"email": "austin@example.com", "phone": "666"},
@@ -25,24 +26,12 @@ var admins = gin.Accounts{
 	"lena":   "hello2",
 }
 
-var any = gin.Accounts{
-	"manu": "4321",
-}
-
 func main() {
 	log.Println("Starting server...")
 	router := gin.Default()
-
+	
 	// Group using gin.BasicAuth() middleware
-	// gin.Accounts is a shortcut for map[string]string
-	authorized := router.Group("/api", gin.BasicAuth(any))
-	authorized.GET("", func(c *gin.Context) {
-		user := c.MustGet(gin.AuthUserKey).(string)
-		if secret, ok := secrets[user]; ok {
-			c.JSON(http.StatusOK, gin.H{"user": user, "secret": secret})
-		}
-	})
-	admin := authorized.Group("/admin", gin.BasicAuth(admins))
+	admin := router.Group("/admin", gin.BasicAuth(admins))
 
 	// /admin/secrets endpoint
 	// hit "localhost:8080/admin/secrets
@@ -56,8 +45,8 @@ func main() {
 		}
 	})
 
-	controllers.AccountRoutes(authorized.Group("/account"))
-	controllers.ArticleRoutes(authorized.Group("/articles"))
+	controllers.AccountRoutes(router.Group("/account"))
+	controllers.ArticleRoutes(router.Group("/articles"))
 
 	srv := &http.Server{
 		Addr:    ":8080",
