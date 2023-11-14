@@ -1,18 +1,10 @@
-package controllers
+package adding
 
 import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
-
-// article represents data about a blog article.
-type article struct {
-	Id			uint64 `json:"id"`
-	Title		string `json:"title"`
-	TopicId		uint64 `json:"topicId"`
-	Description	string `json:"description"`
-}
 
 // article slice to seed record article data.
 var articles = []article{

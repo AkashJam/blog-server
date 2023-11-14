@@ -1,7 +1,6 @@
 package main
 
 import (
-	"blog/server/controllers"
 	"context"
 	"log"
 	"net/http"
@@ -9,6 +8,8 @@ import (
 	"os/signal"
 	"syscall"
 	"time"
+
+	"github.com/AkashJam/blog-server/server/pkg/http/rest"
 
 	"github.com/gin-gonic/gin"
 )
@@ -45,8 +46,8 @@ func main() {
 	// 	}
 	// })
 
-	controllers.AccountRoutes(router.Group("/account"))
-	controllers.ArticleRoutes(router.Group("/articles"))
+	// rest.AccountRoutes(router.Group("/account"))
+	rest.ArticleRoutes(router.Group("/articles"))
 
 	srv := &http.Server{
 		Addr:    ":8080",
