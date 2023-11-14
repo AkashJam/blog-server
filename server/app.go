@@ -31,19 +31,19 @@ func main() {
 	router := gin.Default()
 	
 	// Group using gin.BasicAuth() middleware
-	admin := router.Group("/admin", gin.BasicAuth(admins))
+	// admin := router.Group("/admin", gin.BasicAuth(admins))
 
 	// /admin/secrets endpoint
 	// hit "localhost:8080/admin/secrets
-	admin.GET("/secrets", func(c *gin.Context) {
-		// get user, it was set by the BasicAuth middleware
-		user := c.MustGet(gin.AuthUserKey).(string)
-		if secret, ok := secrets[user]; ok {
-			c.JSON(http.StatusOK, gin.H{"user": user, "secret": secret})
-		} else {
-			c.JSON(http.StatusOK, gin.H{"user": user, "secret": "NO SECRET :("})
-		}
-	})
+	// admin.GET("/secrets", func(c *gin.Context) {
+	// 	// get user, it was set by the BasicAuth middleware
+	// 	user := c.MustGet(gin.AuthUserKey).(string)
+	// 	if secret, ok := secrets[user]; ok {
+	// 		c.JSON(http.StatusOK, gin.H{"user": user, "secret": secret})
+	// 	} else {
+	// 		c.JSON(http.StatusOK, gin.H{"user": user, "secret": "NO SECRET :("})
+	// 	}
+	// })
 
 	controllers.AccountRoutes(router.Group("/account"))
 	controllers.ArticleRoutes(router.Group("/articles"))
