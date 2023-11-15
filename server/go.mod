@@ -1,13 +1,8 @@
-module blog/server
+module github.com/AkashJam/blog-server/server
 
 go 1.21.3
 
-replace blog/server/controllers => ./controllers
-
-require (
-	blog/server/controllers v0.0.0-00010101000000-000000000000
-	github.com/gin-gonic/gin v1.9.1
-)
+require github.com/gin-gonic/gin v1.9.1
 
 require (
 	github.com/bytedance/sonic v1.10.2 // indirect

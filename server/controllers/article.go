@@ -21,6 +21,10 @@ var articles = []article{
 	{Id: 3, Title: "Security", TopicId: 3, Description: "2021-04-12 23:42:45"},
 }
 
+func ArticleRoutes(g *gin.RouterGroup) {
+	g.GET("/", getArticles)
+}
+
 // getArticles responds with the list of all articles as JSON.
 func getArticles(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, articles)

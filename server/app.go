@@ -10,7 +10,6 @@ import (
 	"time"
 
 	"github.com/AkashJam/blog-server/server/pkg/http/rest"
-
 	"github.com/gin-gonic/gin"
 )
 
