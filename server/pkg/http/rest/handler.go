@@ -10,16 +10,16 @@ import (
 //Necessary to import local package into another local package
 type Config struct {
 	R				*gin.Engine
-// 	ArticleService	article.Service
+	ArticleService	article.Service
 }
 
 type Handler struct {
 	R				*gin.Engine
-// 	ArticleService	article.Service
+	ArticleService	article.Service
 }
 
 func getHealthy(c *gin.Context) {
-	c.JSON(http.StatusOK,gin.H{
+	c.JSON(http.StatusOK, gin.H{
 		"msg": "it works",
 	})
 }
@@ -27,14 +27,10 @@ func getHealthy(c *gin.Context) {
 func NewHandler(c *Config) *Handler {
 	h := &Handler{
 		R:				c.R,
-		// ArticleService:	c.ArticleService,
+		ArticleService:	c.ArticleService,
 	}
 	g := h.R.Group("/api")
 	g.GET("/", getHealthy)
-	g.GET("/articles", article.GetArticles)
+	g.GET("/articles", h.getArticles)
 	return h
 }
-
-// func AccountRoutes(g *gin.RouterGroup) {
-// 	g.GET("/", article.getArticles)
-// }

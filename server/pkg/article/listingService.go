@@ -1,11 +1,5 @@
 package article
 
-import (
-	"net/http"
-
-	"github.com/gin-gonic/gin"
-)
-
 // article slice to seed record article data.
 var articles = []article{
 	{Id: 1, Title: "Coherence", TopicId: 1, Description: "2021-08-25 02:18:45"},
@@ -14,10 +8,10 @@ var articles = []article{
 }
 
 // getArticles responds with the list of all articles as JSON. the *service is to implement the method
-func GetArticles(c *gin.Context) {
+func (s *service) GetArticles() ([]article, error) {
 	// try {
-		c.IndentedJSON(http.StatusOK, articles)
-		// return articles, nil
+		// c.IndentedJSON(http.StatusOK, articles)
+		return articles, nil
 	// } catch (error) {
 	// 	return []article, error
 	// }

@@ -9,6 +9,7 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/AkashJam/blog-server/server/pkg/article"
 	"github.com/AkashJam/blog-server/server/pkg/http/rest"
 	"github.com/gin-gonic/gin"
 )
@@ -48,7 +49,7 @@ func main() {
 	// rest.AccountRoutes(router.Group("/articles"))
 	rest.NewHandler(&rest.Config{
 		R: router,
-		// ArticleService: article.NewService(a),
+		ArticleService: article.NewService(),
 	})
 
 	srv := &http.Server{

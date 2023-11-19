@@ -1,18 +1,20 @@
 package article
 
-// //Necessary to import local package into another local package
-// type Service interface {
-// 	GetArticles() ([]article, error)
+//Necessary to import local package into another local package
+type Service interface {
+	GetArticles() ([]article, error)
+}
+
+// type ListRepository interface {
+// 	GetArticles() []article
 // }
 
-// // type ListRepository interface {
-// // 	GetArticles() []article
-// // }
+type service struct {
+	// supposed to be repository when using db
+	s Service
+}
 
-// type service struct {
-// 	s Service
-// }
-
-// func NewService() Service {
-// 	return &service{}
-// }
+// takes repository as input which is the db initialization
+func NewService() Service {
+	return &service{}
+}
