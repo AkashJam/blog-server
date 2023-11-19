@@ -1,4 +1,4 @@
-package adding
+package article
 
 type article struct {
 	Id          uint64 `json:"id"`

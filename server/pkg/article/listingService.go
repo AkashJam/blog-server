@@ -1,4 +1,4 @@
-package adding
+package article
 
 import (
 	"net/http"
@@ -13,7 +13,13 @@ var articles = []article{
 	{Id: 3, Title: "Security", TopicId: 3, Description: "2021-04-12 23:42:45"},
 }
 
-// getArticles responds with the list of all articles as JSON.
-func getArticles(c *gin.Context) {
-	c.IndentedJSON(http.StatusOK, articles)
+// getArticles responds with the list of all articles as JSON. the *service is to implement the method
+func GetArticles(c *gin.Context) {
+	// try {
+		c.IndentedJSON(http.StatusOK, articles)
+		// return articles, nil
+	// } catch (error) {
+	// 	return []article, error
+	// }
+
 }

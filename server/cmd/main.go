@@ -45,8 +45,11 @@ func main() {
 	// 	}
 	// })
 
-	// rest.AccountRoutes(router.Group("/account"))
-	rest.ArticleRoutes(router.Group("/articles"))
+	// rest.AccountRoutes(router.Group("/articles"))
+	rest.NewHandler(&rest.Config{
+		R: router,
+		// ArticleService: article.NewService(a),
+	})
 
 	srv := &http.Server{
 		Addr:    ":8080",
